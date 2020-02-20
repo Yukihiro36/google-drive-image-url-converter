@@ -3,43 +3,98 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
 	<title>Goole Drive Image URL Converter</title>
 	<script type="text/javascript">
 		$(function() {
-		  var $input = $('#input');
-		  var $output = $('#output');
-		  $input.on('input', function(event) {
-			var value = $input.val();
-			// before: https://drive.google.com/file/d/{ID}/view?usp=sharing
-			// after : http://drive.google.com/uc?export=view&id={ID}
- 			value = value.replace('/view?usp=sharing', '');
-			value = value.replace('/file/d/', '/uc?export=view&id=')
-			$output.text(value);
-		  });
+		   var $input = $('#input');
+		   var $output = $('#output');
+		  
+			$input.on('input', function(event) {
+				var value = $input.val();
+				// before: https://drive.google.com/file/d/{ID}/view?usp=sharing
+				// after : http://drive.google.com/uc?export=view&id={ID}
+				value = value.replace('/view?usp=sharing', '');
+				value = value.replace('/file/d/', '/uc?export=view&id=')
+				$output.text(value);
+			});
+		  
+			$('#clear').click(function(){
+				$input.val('');
+				$output.text('');
+			});
+
+			$('#copy').click(function() {
+				var copyText = document.querySelector('#output'); 
+
+				var range = document.createRange();
+				range.selectNodeContents(copyText);
+
+				var selection = window.getSelection();
+				selection.removeAllRanges();
+				selection.addRange(range);
+				document.execCommand('copy');
+			});
+
 		});
 	</script>
 </head>
 <body>
+
+<div>
+  <label>Original URL:</label>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button id="clear" class="btn btn-outline-secondary" type="button">Clear</button>
+  </div>
+  <input id="input" type="text" class="form-control" placeholder="https://drive.google.com/file/d/{ID}/view?usp=sharing" aria-label="" aria-describedby="basic-addon1">
+</div>
+<div>
+  <small class="form-text text-muted">Note: Please input a link to an image file shared on your Google Drive.</small>
+</div>
+
+<br class="d-none d-sm-inline" />
+
+<div>
+  <label>Converted URL:</label>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button id="copy" class="btn btn-outline-secondary" type="button">Copy</button>
+  </div>
+  <span id="output" type="text" class="form-control" placeholder="http://drive.google.com/uc?export=view&id={ID}" aria-label="" aria-describedby="basic-addon1">
+</div>
+<div>
+  <small class="form-text text-muted">Note: You can use above link in 'img' tag.</small>
+</div>
+
+
+	<!--
 	<form>
 		<div class=".m-auto">
 			<div class="form-group">
-				<label for="input">Original URL</label>
+				
 				<input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputHelp" placeholder="https://drive.google.com/file/d/{ID}/view?usp=sharing">
 				<small id="inputHelp" class="form-text text-muted">Please input a link to an image file shared on your Google Drive</small>
 			</div>
 		</div>
 
+
+
 		<div class=".m-auto">
 			<div class="form-group">
-				<label for="output">Converted URL</label>
+				<label for="output">/label>
 				<span id="output" type="text" class="form-control" aria-label="Default" aria-describedby="outputHelp" placeholder="">
-				<small id="outputHelp" class="form-text text-muted">You can use this link as 'img' tag on your homepage</small>
+				<small id="outputHelp" class="form-text text-muted"></small>
 			</div>
 		</div>
 	</form>
+		-->
 	
 </body>
 </html>
