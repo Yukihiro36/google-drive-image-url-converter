@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Goole Drive Image URL Converter</title>
+	<script type="text/javascript">
+		$(function() {
+		  var $input = $('#input');
+		  var $output = $('#output');
+		  $input.on('input', function(event) {
+			var value = $input.val();
+			
+			// before: https://drive.google.com/file/d/{ID}/view?usp=sharing
+			// after : http://drive.google.com/uc?export=view&id={ID}
+ 			value = value.replace('/view?usp=sharing', '');
+			value = value.replace('/file/d/', '/uc?export=view&id=')
+			$output.text(value);
+		  });
+		});
+	</script>
+</head>
+<body>
+	
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+		<span class="input-group-text" id="inputGroup-sizing-default">Before</span>
+	  </div>
+	  <input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+	</div>
+
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+		<span class="input-group-text" id="inputGroup-sizing-default">After</span>
+	  </div>
+	  <span id="output" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+	</div>
+	
+</body>
+</html>
+
+
