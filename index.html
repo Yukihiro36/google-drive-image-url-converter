@@ -13,7 +13,6 @@
 		  var $output = $('#output');
 		  $input.on('input', function(event) {
 			var value = $input.val();
-			
 			// before: https://drive.google.com/file/d/{ID}/view?usp=sharing
 			// after : http://drive.google.com/uc?export=view&id={ID}
  			value = value.replace('/view?usp=sharing', '');
@@ -24,22 +23,23 @@
 	</script>
 </head>
 <body>
-	
-	<div class="input-group mb-3">
-	  <div class="input-group-prepend">
-		<span class="input-group-text" id="inputGroup-sizing-default">Before</span>
-	  </div>
-	  <input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-	</div>
+	<form>
+		<div class=".m-auto">
+			<div class="form-group">
+				<label for="input">Original URL</label>
+				<input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputHelp" placeholder="https://drive.google.com/file/d/{ID}/view?usp=sharing">
+				<small id="inputHelp" class="form-text text-muted">Please input a link to an image file shared on your Google Drive</small>
+			</div>
+		</div>
 
-	<div class="input-group mb-3">
-	  <div class="input-group-prepend">
-		<span class="input-group-text" id="inputGroup-sizing-default">After</span>
-	  </div>
-	  <span id="output" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-	</div>
+		<div class=".m-auto">
+			<div class="form-group">
+				<label for="output">Converted URL</label>
+				<span id="output" type="text" class="form-control" aria-label="Default" aria-describedby="outputHelp" placeholder="">
+				<small id="outputHelp" class="form-text text-muted">You can use this link as 'img' tag on your homepage</small>
+			</div>
+		</div>
+	</form>
 	
 </body>
 </html>
-
-
